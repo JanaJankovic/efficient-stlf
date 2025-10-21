@@ -16,17 +16,29 @@
 
 Achieving accurate forecasting of household electricity consumption is challenging due to volatile usage patterns and resource-intensive training, yet it is essential for grid scheduling, operational planning and integration of renewable energy. We propose a transfer learning method using a CNN–LSTM universal model trained on a subset of households and adapted through fine-tuning, combined with hyper-parameter optimization and early stopping. Experiments with daily consumption data show training time reduced by 71–85% compared to existing LSTM and CNN–LSTM approach, with no loss in short-term and only minor degradation at long-term accuracy, confirming the effectiveness of transfer learning for efficient, adaptable consumption forecasting.
 
+## Methodology
+
+In short our methodology consists of the following steps:
+
+1. Train universal model on train subset of all consumer time series data
+   - Optimize HPO by using innovative early-stopping criteria
+   - Pick the one universal model based on performance on validation subset
+2. Fine-tune universal model to all consumer time series data
+3. Report the results
+
 ## Table of contents
 
 1. [Abstract](#abstract)
-2. [Getting Started](#getting-started)
+2. [Methodology](#methodology)
+3. [Getting Started](#getting-started)
    - [Prerequisites](#prerequisites)
    - [Installation](#installation)
-3. [Usage Examples](#usage-examples)
-4. [Documentation](#documentation)
+4. [Usage Examples](#usage-examples)
+5. [Documentation](#documentation)
    - [Folder Structure](#folder-structure)
    - [Experiment Configuration](#experiment-configuration)
-5. [Contact](#contact)
+   - [Experiment Results](#experiment-results)
+6. [Contact](#contact)
 
 ## Getting Started
 
@@ -102,6 +114,10 @@ To change experiment configuration, you can modify `experiment.json`. Parameters
 | `lookback`     | Number of past load values before prediction                         |
 | `horizon`      | Array of forecasting horizons to be experimented on                  |
 | `search_space` | Hyper-parameters for model tuning                                    |
+
+### Experiment results
+
+All experiment results are saved to the separate branches. To check out the results change to branch with following pattern `experiment/yyyy-mm-dd`, where `yyyy` is the year, `mm` the month and `dd` the day of experiment execution.
 
 ## Contact
 
