@@ -79,19 +79,15 @@ def get_performance_metrics(metric_names):
     details = pd.read_csv(log.DETAILS_LOG)
     merged = metrics.merge(details, on="model", suffixes=("_metric", "_detail"))
 
-    # search criteria
+    # exclude only universal
     model_types = (
-        details.loc[~details["type"].isin(["universal", "fine_tuned"]), "type"]
-        .unique()
-        .tolist()
+        details.loc[~details["type"].isin(["universal"]), "type"].unique().tolist()
     )
     horizons = details["horizon"].unique()
 
-    # get per experiment metric statistics
-    def per_experiment_stats(df, group_key="experiment"):
-        g = df.groupby(group_key, as_index=False)
+    def per_experiment_stats(df):
+        g = df.groupby("experiment", as_index=False)
 
-        # means/stds for all requested metrics
         agg_spec = {}
         for m in metric_names:
             agg_spec[f"mean_{m}"] = (m, "mean")
@@ -99,11 +95,10 @@ def get_performance_metrics(metric_names):
 
         per_exp = g.agg(**agg_spec)
 
-        # quantiles 0.25/0.5/0.75 for all metrics
         for q, tag in [(0.25, "q1"), (0.50, "q2"), (0.75, "q3")]:
             qdf = g[metric_names].quantile(q)
             qdf = qdf.rename(columns={m: f"{tag}_{m}" for m in metric_names})
-            per_exp = per_exp.merge(qdf, on=group_key)
+            per_exp = per_exp.merge(qdf, on="experiment")
 
         return per_exp
 
@@ -120,19 +115,25 @@ def get_performance_metrics(metric_names):
 
             per_exp = per_experiment_stats(sub)
 
-            # summarize across experiments with median of per-experiment stats
+            # median across experiments of the per-experiment summaries
             summary = {"model_type": mtype, "horizon": h}
             for col in per_exp.columns:
                 if col == "experiment":
                     continue
                 summary[col] = per_exp[col].median().round(3)
 
-            # best-per-experiment for each metric, then average those bests
+            # best-per-experiment logic
             for m in metric_names:
-                best_per_exp = (
-                    sub.sort_values(m, kind="stable").groupby("experiment").head(1)
-                )
-                summary[f"best_{m}"] = round(best_per_exp[m].mean(), 3)
+                if mtype == "fine_tuned":
+                    # Median the per-experiment values directly.
+                    best_per_exp = sub.groupby("experiment", as_index=False)[m].median()
+                    summary[f"best_{m}"] = round(best_per_exp[m].median(), 3)
+                else:
+                    # Multiple candidates → take the per-experiment best, then median.
+                    best_per_exp = (
+                        sub.sort_values(m, kind="stable").groupby("experiment").head(1)
+                    )
+                    summary[f"best_{m}"] = round(best_per_exp[m].median(), 3)
 
             rows.append(summary)
 

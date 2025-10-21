@@ -47,7 +47,7 @@ def run_experiment():
 
 # Check folder results
 def get_results():
-    metric_names = ["MSE", "MAPE"]
+    metric_names = ["RMSE", "MAPE"]
 
     res.get_training_time()
     res.get_performance_metrics(metric_names)
