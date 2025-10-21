@@ -1,14 +1,12 @@
 # Efficient electricity consumption forecasting using hybrid LSTM and CNN with transfer learning
 
-<div align="center">
-  <table>
-    <tr>
-      <td><img src="img/logo-feri.svg" width="180" alt="FERI"></td>
-      <td><img src="img/univerza.png" width="180" alt="University of Maribor"></td>
-      <td><img src="img/IEEE-Region-8-Logo.png" width="180" alt="IEEE Region 8"></td>
-    </tr>
-  </table>
-</div>
+<p align="center">
+  <img src="img/logo-feri.svg" width="180" alt="FERI">
+  &nbsp;&nbsp;&nbsp;
+  <img src="img/univerza.png" width="180" alt="UM">
+  &nbsp;&nbsp;&nbsp;
+  <img src="img/IEEE-Region-8-Logo.png" width="180" alt="IEEE R8">
+</p>
 
 <p align="center"><strong>Implementation of the IEEE ENERGYCON 2026 Student Paper</strong></p>
 <p align="center">Jana Janković, Vili Podgorelec</p>
