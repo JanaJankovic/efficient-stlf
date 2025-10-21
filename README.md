@@ -1,20 +1,22 @@
 # Efficient electricity consumption forecasting using hybrid LSTM and CNN with transfer learning
 
-<div  style="display: flex; justify-content: center;">
-<div style="display: flex; justify-content: space-between; margin-bottom: 30px; width: 600px">
-<img src="img/logo-feri.svg" style="width: 180px">
-<img src="img/univerza.png" style="width: 180px">
-<img src="img/IEEE-Region-8-Logo.png" style="width: 180px">
-</div>
+<div align="center">
+  <table>
+    <tr>
+      <td><img src="img/logo-feri.svg" width="180" alt="FERI"></td>
+      <td><img src="img/univerza.png" width="180" alt="University of Maribor"></td>
+      <td><img src="img/IEEE-Region-8-Logo.png" width="180" alt="IEEE Region 8"></td>
+    </tr>
+  </table>
 </div>
 
-<p style="text-align: center; font-size: 14pt; font-weight:400; margin-bottom: 5px">Implementation of the IEEE ENERGYCON 2026 Student Paper</p>
-<p style="text-align: center; font-size: 14pt; font-weight:200; margin-bottom: 0px">Jana Janković, Vili Podgorelec</p>
-<p style="text-align: center; font-size: 12pt; font-weight:200; margin-top: 0px">Faculty of Electrical Engineering and Computer Science, University of Maribor, Slovenia</p>
+<p align="center"><strong>Implementation of the IEEE ENERGYCON 2026 Student Paper</strong></p>
+<p align="center">Jana Janković, Vili Podgorelec</p>
+<p align="center">Faculty of Electrical Engineering and Computer Science, University of Maribor, Slovenia</p>
 
 ## Abstract
 
-Achieving accurate forecasting of household electricity consumption is challenging due to volatile usage patterns and resource-intensive training, yet it is essential for grid scheduling, operational planning and integration of renewable energy. We propose a transfer learning method using a CNN–LSTM universal model trained on a subset of households and adapted through fine-tuning, combined with hyper-parameter optimization and early stopping. Experiments with daily consumption data show training time reduced by 71-85% compared to existing LSTM and CNN–LSTM approach, with no loss in short-term and only minor degradation at long-term accuracy, confirming the effectiveness of transfer learning for efficient, adaptable consumption forecasting.
+Achieving accurate forecasting of household electricity consumption is challenging due to volatile usage patterns and resource-intensive training, yet it is essential for grid scheduling, operational planning and integration of renewable energy. We propose a transfer learning method using a CNN–LSTM universal model trained on a subset of households and adapted through fine-tuning, combined with hyper-parameter optimization and early stopping. Experiments with daily consumption data show training time reduced by 71–85% compared to existing LSTM and CNN–LSTM approach, with no loss in short-term and only minor degradation at long-term accuracy, confirming the effectiveness of transfer learning for efficient, adaptable consumption forecasting.
 
 ## Table of contents
 
@@ -32,12 +34,10 @@ Achieving accurate forecasting of household electricity consumption is challengi
 
 ### Prerequisites
 
-Requirements:
-
-- GPU - for fast code execution, but CPU is also supported
-- Python version 3.10.5
+- GPU recommended (CPU supported)
+- Python 3.10.5
 - CUDA 576.83
-- Pytorch 2.5.1
+- PyTorch 2.5.1
 
 ### Installation
 
