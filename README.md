@@ -1,43 +1,53 @@
 # Efficient electricity consumption forecasting using hybrid LSTM and CNN with transfer learning
 
-<div  style="display: flex; justify-content: center;">
-<div style="display: flex; justify-content: space-between; margin-bottom: 30px; width: 600px">
-<img src="img/logo-feri.svg" style="width: 180px">
-<img src="img/univerza.png" style="width: 180px">
-<img src="img/IEEE-Region-8-Logo.png" style="width: 180px">
-</div>
-</div>
+<p align="center">
+  <img src="img/logo-feri.svg" width="180" alt="FERI">
+  &nbsp;&nbsp;&nbsp;
+  <img src="img/univerza.png" width="180" alt="UM">
+  &nbsp;&nbsp;&nbsp;
+  <img src="img/IEEE-Region-8-Logo.png" width="180" alt="IEEE R8">
+</p>
 
-<p style="text-align: center; font-size: 14pt; font-weight:400; margin-bottom: 5px">Implementation of the IEEE ENERGYCON 2026 Student Paper</p>
-<p style="text-align: center; font-size: 14pt; font-weight:200; margin-bottom: 0px">Jana Janković, Vili Podgorelec</p>
-<p style="text-align: center; font-size: 12pt; font-weight:200; margin-top: 0px">Faculty of Electrical Engineering and Computer Science, University of Maribor, Slovenia</p>
+<p align="center"><strong>Implementation of the IEEE ENERGYCON 2026 Student Paper</strong></p>
+<p align="center">Jana Janković, Vili Podgorelec</p>
+<p align="center">Faculty of Electrical Engineering and Computer Science, University of Maribor, Slovenia</p>
 
 ## Abstract
 
-Achieving accurate forecasting of household electricity consumption is challenging due to volatile usage patterns and resource-intensive training, yet it is essential for grid scheduling, operational planning and integration of renewable energy. We propose a transfer learning method using a CNN–LSTM universal model trained on a subset of households and adapted through fine-tuning, combined with hyper-parameter optimization and early stopping. Experiments with daily consumption data show training time reduced by 71-85% compared to existing LSTM and CNN–LSTM approach, with no loss in short-term and only minor degradation at long-term accuracy, confirming the effectiveness of transfer learning for efficient, adaptable consumption forecasting.
+Achieving accurate forecasting of household electricity consumption is challenging due to volatile usage patterns and resource-intensive training, yet it is essential for grid scheduling, operational planning and integration of renewable energy. We propose a transfer learning method using a CNN–LSTM universal model trained on a subset of households and adapted through fine-tuning, combined with hyper-parameter optimization and early stopping. Experiments with daily consumption data show training time reduced by 71–85% compared to existing LSTM and CNN–LSTM approach, with no loss in short-term and only minor degradation at long-term accuracy, confirming the effectiveness of transfer learning for efficient, adaptable consumption forecasting.
+
+## Methodology
+
+In short our methodology consists of the following steps:
+
+1. Train universal model on train subset of all consumer time series data
+   - Optimize HPO by using innovative early-stopping criteria
+   - Pick the one universal model based on performance on validation subset
+2. Fine-tune universal model to all consumer time series data
+3. Report the results
 
 ## Table of contents
 
 1. [Abstract](#abstract)
-2. [Getting Started](#getting-started)
+2. [Methodology](#methodology)
+3. [Getting Started](#getting-started)
    - [Prerequisites](#prerequisites)
    - [Installation](#installation)
-3. [Usage Examples](#usage-examples)
-4. [Documentation](#documentation)
+4. [Usage Examples](#usage-examples)
+5. [Documentation](#documentation)
    - [Folder Structure](#folder-structure)
    - [Experiment Configuration](#experiment-configuration)
-5. [Contact](#contact)
+   - [Experiment Results](#experiment-results)
+6. [Contact](#contact)
 
 ## Getting Started
 
 ### Prerequisites
 
-Requirements:
-
-- GPU - for fast code execution, but CPU is also supported
-- Python version 3.10.5
+- GPU recommended (CPU supported)
+- Python 3.10.5
 - CUDA 576.83
-- Pytorch 2.5.1
+- PyTorch 2.5.1
 
 ### Installation
 
@@ -104,6 +114,10 @@ To change experiment configuration, you can modify `experiment.json`. Parameters
 | `lookback`     | Number of past load values before prediction                         |
 | `horizon`      | Array of forecasting horizons to be experimented on                  |
 | `search_space` | Hyper-parameters for model tuning                                    |
+
+### Experiment results
+
+All experiment results are saved to the separate branches. To check out the results change to branch with following pattern `experiment/yyyy-mm-dd`, where `yyyy` is the year, `mm` the month and `dd` the day of experiment execution.
 
 ## Contact
 
